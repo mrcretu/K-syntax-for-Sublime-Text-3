@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+rule ${3:\$} 
+		<${1:\$}> ${2:\$} </${1:\$}>
+]]></content>
+
+ <tabTrigger>rule1</tabTrigger>
+ <scope>source.k</scope>
+
+</snippet>

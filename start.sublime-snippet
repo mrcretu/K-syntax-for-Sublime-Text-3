@@ -1,0 +1,25 @@
+<snippet>
+	<content><![CDATA[
+module ${1:name}-SYNTAX
+	syntax ${2:} ::= ${3:}
+
+
+
+
+endmodule
+
+module IMP
+
+	imports ${1:}-SYNTAX
+
+
+
+
+
+endmodule
+]]></content>
+
+<tabTrigger>start</tabTrigger>
+<scope>source.k</scope>
+	
+</snippet>

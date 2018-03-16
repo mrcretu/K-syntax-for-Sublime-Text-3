@@ -1,0 +1,9 @@
+<snippet>
+	<content><![CDATA[
+syntax ${1:name} ::= ${2:}
+]]></content>
+
+	<tabTrigger>syntax</tabTrigger>
+	<scope>source.k</scope>
+
+</snippet>

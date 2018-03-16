@@ -1,0 +1,88 @@
+%YAML 1.2
+---
+# See http://www.sublimetext.com/docs/3/syntax.html
+name: K
+file_extensions:
+  - k
+scope: source.k
+
+contexts:
+  
+  main:
+
+    # Double quoted strings
+    - match: '"'
+      scope: punctuation.definition.string.begin.k
+      push: double_quoted_string
+
+    # Comments that start with '//' and ends at the the end of the line
+    - match: '//'
+      scope: punctuation.definition.comment.k
+      push: line_comment
+
+    - match: (syntax\s[a-z]+|imports\s[a-z]+|module\s[a-z]+) 
+      scope: invalid.illegal
+
+    # Control statement
+    - match: \b(syntax|rule|return|configuration|Token|Lexer|requires|Kresult|context)\b
+      scope: keyword.control.k
+
+    # 
+    - match: \b(strict|avoid|prefer|bracket|non-assoc|seqstrict|left|right|macro|token|notInRules|autoReject|structural|latex|binder)\b
+      scope: keyword.control.k
+
+    # Data types
+    - match: '\b(Id|Int|Bool|String|Float|int|bool|string)\b'
+      scope: storage.type.k
+
+    # Imports
+    - match: '\b(imports)\b'
+      scope: keyword.control.import.k
+    
+    # Module & endmodule
+    - match: '\b(module|endmodule)\b'
+      scope: entity.name.function  
+
+    # Such as AExp|BExp
+    # - match: '[A-Z]\d|[A-Z]([A-Z][a-z]+)|[A-Z][a-z]+|[a-zA-Z]+'
+    #   scope: variable.language
+    
+    #Bool statements
+    - match: '\b(true|false|notBool)\b'
+      scope: constant.language
+
+    #Common operators
+    - match: \|->|\+|=>|\||=|~>|<-
+      scope: keyword.operator 
+
+    - match: ::=
+      scope: keyword.operator.assignment 
+
+    #Conditional statements
+    - match: '\b(if|while|when|else)\b'
+      scope: string
+    
+    # Such as <k> ..... <\k> or <stack> ...... <\stack>
+    - match: <[a-z]+([a-z])>|<[\/a-z]+>|<[A-Z]>|<\/[A-Z]>|<[a-z]+(\s)[a-z]+(=)\"[a-z]+\">
+      scope:  entity.name.function 
+
+    # Numbers
+    - match: (-|\.)?\b[0-9]+(\.[0-9]+)?\b
+      scope: constant.numeric.k
+
+
+  double_quoted_string:
+    - meta_scope: string.quoted.double.k
+    - match: '\\.'
+      scope: constant.character.escape.k
+    - match: '"'
+      scope: punctuation.definition.string.end.k
+      pop: true
+
+  line_comment:
+    - meta_scope: comment.line.k
+    - match: $
+      pop: true
+
+
+  
